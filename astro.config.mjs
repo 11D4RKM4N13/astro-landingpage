@@ -11,44 +11,46 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE.url,
+	site: SITE.url,
 
-  integrations: [
-    react(),
-    icon(),
-    mdx(),
-    sitemap({
-      changefreq: "weekly",
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
-  ],
+	integrations: [
+		react(),
+		icon(),
+		mdx(),
+		sitemap({
+			changefreq: "weekly",
+			priority: 0.7,
+			lastmod: new Date(),
+			filter: (page) => !page.includes("/drafts/"),
+			hostname: "https://gycocreativos.netlify.app",
+		}),
+	],
 
-  vite: {
-    plugins: [tailwindcss()],
-    build: {
-      cssMinify: "lightningcss",
-      minify: "terser",
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
-    },
-  },
+	vite: {
+		plugins: [tailwindcss()],
+		build: {
+			cssMinify: "lightningcss",
+			minify: "terser",
+			terserOptions: {
+				compress: {
+					drop_console: true,
+					drop_debugger: true,
+				},
+			},
+		},
+	},
 
-  build: {
-    inlineStylesheets: "auto",
-    assets: "_assets",
-  },
+	build: {
+		inlineStylesheets: "auto",
+		assets: "_assets",
+	},
 
-  compressHTML: true,
+	compressHTML: true,
 
-  image: {
-    domains: [],
-    remotePatterns: [],
-  },
+	image: {
+		domains: [],
+		remotePatterns: [],
+	},
 
-  adapter: netlify(),
+	adapter: netlify(),
 });
