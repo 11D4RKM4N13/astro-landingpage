@@ -3,7 +3,7 @@ export const SITE = {
 	description:
 		"A minimal, modern starter template for building fast websites with Astro",
 	defaultLanguage: "es",
-	url: "https://astro-base.example.com", // Update this with your actual site URL
+	url: "https://gycocreativos.netlify.app/",
 	author: "Edwin Suarez",
 	ogImage: "/og-image.png", // Add this image to your public folder
 	// Web3Forms: Get your access key from https://web3forms.com
