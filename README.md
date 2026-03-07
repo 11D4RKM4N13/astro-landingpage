@@ -51,13 +51,11 @@ A minimal, modern starter template for building fast websites with Astro. This t
 ├── src/
 │   ├── assets/          # Static assets (images, SVGs)
 │   ├── components/      # Reusable Astro components
-│   │   ├── CTA.astro           # Call-to-action section
 │   │   ├── Features.astro      # Features showcase
 │   │   ├── Footer.astro        # Site footer
 │   │   ├── Header.astro        # Site header/navigation
 │   │   ├── Hero.astro          # Hero section
 │   │   ├── ScrollReveal.tsx    # Scroll animation component
-│   │   └── SassExample.astro   # Sass usage example
 │   ├── layouts/
 │   │   └── Layout.astro        # Base page layout
 │   ├── pages/          # Routes (file-based routing)

@@ -1,0 +1,127 @@
+---
+const projects = [
+	{
+		image:
+			"https://images.unsplash.com/photo-1772528205616-e65dc0994c7b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1OHx8fGVufDB8fHx8fA%3D%3D",
+		title: "Branding empresarial",
+		category: "Identidad visual",
+	},
+	{
+		image:
+			"https://images.unsplash.com/photo-1772366088984-78edea09f18d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2OHx8fGVufDB8fHx8fA%3D%3D",
+		title: "Diseño de packaging",
+		category: "Packaging",
+	},
+	{
+		image:
+			"https://plus.unsplash.com/premium_photo-1673718697732-e02e82fe443c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3MXx8fGVufDB8fHx8fA%3D%3D",
+		title: "Campaña digital",
+		category: "Marketing",
+	},
+];
+---
+
+<section class="portfolio-section">
+	<h2>Proyectos recientes</h2>
+	<p class="subtitle">
+		Algunos trabajos que reflejan nuestra forma de diseñar.
+	</p>
+
+	<div class="portfolio-grid">
+		{
+			projects.map((project) => (
+				<div class="portfolio-card reveal">
+					<img src={project.image} alt={project.title} />
+					<div class="portfolio-info">
+						<h3>{project.title}</h3>
+						<p>{project.category}</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+
+	<a href="/features" class="btn">Ver portafolio completo</a>
+</section>
+
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+			}
+		});
+	});
+
+	document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>
+
+<style>
+	.portfolio-section {
+		padding: 4rem 1rem;
+		text-align: center;
+	}
+
+	.subtitle {
+		color: #666;
+		margin-bottom: 2rem;
+	}
+
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.portfolio-card {
+		border-radius: 14px;
+		overflow: hidden;
+		background: white;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s;
+	}
+
+	.portfolio-card:hover {
+		transform: translateY(-5px);
+	}
+
+	.portfolio-card img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+
+	.portfolio-info {
+		padding: 1rem;
+	}
+
+	.portfolio-info h3 {
+		margin: 0;
+	}
+
+	.portfolio-info p {
+		color: #777;
+		font-size: 0.9rem;
+	}
+
+	.btn {
+		display: inline-block;
+		background: black;
+		color: white;
+		padding: 0.7rem 1.5rem;
+		border-radius: 8px;
+		text-decoration: none;
+	}
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: all 0.7s ease;
+	}
+
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>

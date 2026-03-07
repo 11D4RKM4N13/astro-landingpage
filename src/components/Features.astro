@@ -1,6 +1,19 @@
 ---
 import ScrollReveal from "./ScrollReveal.tsx";
+import Carousel from "./Carousel.astro";
 import { Icon } from "astro-icon/components";
+
+const misTrabajos = [
+  { 
+    // Nueva imagen de Packaging profesional
+    src: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop', 
+    alt: 'Diseño de Packaging y empaques creativos' 
+  },
+  { 
+    src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000&auto=format&fit=crop', 
+    alt: 'Identidad Visual y Branding' 
+  },
+];
 ---
 
 <section id="features" class="max-w-6xl mx-auto px-4 py-20">
@@ -16,12 +29,14 @@ import { Icon } from "astro-icon/components";
         <div
           class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4"
         >
-          <Icon name="tabler:brand-react" class="w-6 h-6 text-gray-900" aria-hidden="true" />
+          <Icon name="tabler:packages"  class="w-6 h-6 text-gray-900" aria-hidden="true" />
         </div>
         <h3 class="text-xl font-semibold text-gray-900 mb-2">Packaging</h3>
         <p class="text-gray-600">
           Diseño de empaques creativos y funcionales que destacan tu producto en el mercado y atraen a los consumidores.
         </p>
+        <br>
+        <Carousel images={misTrabajos} />
       </div>
     </ScrollReveal>
     <ScrollReveal client:idle delay={0.3} scale={true}>
@@ -41,6 +56,8 @@ import { Icon } from "astro-icon/components";
         <p class="text-gray-600">
           Desarrollo de identidades visuales completas que reflejen la esencia de tu marca y fortalezcan tu presencia en el mercado.
         </p>
+        <br>
+        <Carousel images={misTrabajos} />
       </div>
     </ScrollReveal>
     <ScrollReveal client:idle delay={0.4} scale={true}>
@@ -50,12 +67,65 @@ import { Icon } from "astro-icon/components";
         <div
           class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4"
         >
-          <Icon name="tabler:brand-tailwind" class="w-6 h-6 text-gray-900" aria-hidden="true" />
+          <Icon name="tabler:speakerphone" class="w-6 h-6 text-gray-900" aria-hidden="true" />
         </div>
         <h3 class="text-xl font-semibold text-gray-900 mb-2">Merchandising Político</h3>
         <p class="text-gray-600">
           Diseño de merchandising político que refuerce tu mensaje y fortalezca tu presencia en el mercado electoral.
         </p>
+        <br>
+        <Carousel images={misTrabajos} />
+      </div>
+    </ScrollReveal>
+        <ScrollReveal client:idle delay={0.4} scale={true}>
+      <div
+        class="p-6 bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4"
+        >
+          <Icon name="tabler:speakerphone" class="w-6 h-6 text-gray-900" aria-hidden="true" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Diseño Gráfico</h3>
+        <p class="text-gray-600">
+          Diseño gráfico creativo y estratégico que comunica eficazmente tu mensaje y fortalece la identidad de tu marca en el mercado.
+        </p>
+        <br>
+        <Carousel images={misTrabajos} />
+      </div>
+    </ScrollReveal>
+        <ScrollReveal client:idle delay={0.4} scale={true}>
+      <div
+        class="p-6 bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4"
+        >
+          <Icon name="game-icons:papers" class="w-6 h-6 text-gray-900" aria-hidden="true" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Papelería Comercial</h3>
+        <p class="text-gray-600">
+          Diseño de papelería comercial que proyecte profesionalismo y refuerce la identidad de tu marca en cada interacción con tus clientes.
+        </p>
+        <br>
+        <Carousel images={misTrabajos} />
+      </div>
+    </ScrollReveal>
+        <ScrollReveal client:idle delay={0.4} scale={true}>
+      <div
+        class="p-6 bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4"
+        >
+          <Icon name="tabler:printer" class="w-6 h-6 text-gray-900" aria-hidden="true" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Sublimación</h3>
+        <p class="text-gray-600">
+          Diseño de productos sublimados personalizados que reflejen tu marca y atraigan a tus clientes con calidad y estilo.
+        </p>
+        <br>
+        <Carousel images={misTrabajos} />
       </div>
     </ScrollReveal>
   </div>

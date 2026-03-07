@@ -1,0 +1,84 @@
+---
+const services = [
+	"Branding",
+	"Diseño gráfico",
+	"Packaging",
+	"Merchandising",
+	"Marketing digital",
+];
+---
+
+<section class="services-section reveal">
+	<p class="subtitle">
+		Soluciones creativas para comunicar mejor tu marca y conectar con tu
+		público.
+	</p>
+
+	<ul class="services-list">
+		{services.map((service) => <li>{service}</li>)}
+	</ul>
+
+	<a href="/features" class="btn">Ver todos los servicios</a>
+</section>
+
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+			}
+		});
+	});
+
+	document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>
+
+<style>
+	.services-section {
+		padding: 4rem 1rem;
+		text-align: center;
+	}
+
+	.subtitle {
+		color: #000000;
+		font-size: 2.5rem;
+		font-weight: bold;
+		margin-bottom: 2rem;
+	}
+
+	.services-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.services-list li {
+		background: #f5f5f5;
+		padding: 0.6rem 1.2rem;
+		border-radius: 999px;
+		font-size: 0.95rem;
+	}
+
+	.btn {
+		display: inline-block;
+		background: black;
+		color: white;
+		padding: 0.7rem 1.6rem;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	/* Animación */
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: all 0.8s ease;
+	}
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>

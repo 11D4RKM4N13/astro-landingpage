@@ -2,21 +2,72 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import Features from "../components/Features.astro";
-import CTA from "../components/CTA.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import FlowSection from "../components/FlowSection.astro";
+import ServicesSummary from "../components/ServicesSummary.astro";
+import WhyChooseUs from "../components/WhyChooseUs.astro";
+import ProcessSection from "../components/ProcessSection.astro";
+import PortfolioSection from "../components/PortfolioSection.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
 import Footer from "../components/Footer.astro";
 import { SITE } from "../config/site.mjs";
 ---
 
 <Layout
-  title={SITE.title}
-  description="A minimal, modern starter template for building fast websites with Astro. Includes React, Tailwind CSS, Framer Motion, and more."
-  canonicalURL={SITE.url}
+	title={SITE.title}
+	description={SITE.description}
+	canonicalURL={SITE.url}
 >
-  <Header />
-  <main id="main-content" role="main">
-    <Hero />
-    <Features />
-  </main>
-  <Footer />
+	<!-- Encabezado -->
+	<Header />
+
+	<main id="main-content" role="main">
+		<!-- Sección de héroe -->
+		<Hero />
+
+		<!-- Sección de flujo -->
+		<FlowSection />
+
+		<SectionDivider
+			image="../public/section-divider-1.jpg"
+			text="Nuestros servicios"
+			height="20vh"
+		/>
+
+		<!-- Servicios resumidos -->
+		<ServicesSummary />
+
+		<SectionDivider
+			image="../public/section-divider-2.jpg"
+			text="Por qué elegirnos"
+			height="20vh"
+		/>
+
+		<!-- Por qué elegirnos -->
+		<WhyChooseUs />
+
+		<SectionDivider
+			image="../public/section-divider-3.jpg"
+			text="Nuestro proceso"
+			height="20vh"
+		/>
+
+		<!-- Proceso -->
+		<ProcessSection />
+
+		<SectionDivider
+			image="../public/section-divider-4.jpg"
+			text="Portafolio destacado"
+			height="20vh"
+		/>
+
+		<!-- Portafolio -->
+		<PortfolioSection />
+
+		<!-- Botón de WhatsApp -->
+		<WhatsappButton />
+	</main>
+
+	<!-- Pie de página -->
+	<Footer />
 </Layout>

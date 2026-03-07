@@ -1,0 +1,98 @@
+---
+
+
+
+const steps = [
+  {
+    number: "01",
+    title: "Entendemos tu proyecto",
+    text: "Escuchamos tus ideas, objetivos y necesidades para comprender lo que realmente necesita tu marca."
+  },
+  {
+    number: "02",
+    title: "Propuesta creativa",
+    text: "Definimos una solución visual estratégica que conecte con tu público."
+  },
+  {
+    number: "03",
+    title: "Diseño y desarrollo",
+    text: "Creamos las piezas visuales, ajustamos detalles y refinamos el diseño."
+  },
+  {
+    number: "04",
+    title: "Entrega final",
+    text: "Te entregamos todos los recursos listos para usar en tus canales."
+  }
+];
+---
+
+<section class="process-section">
+  <h2>Nuestro proceso</h2>
+  <p class="subtitle">
+    Trabajamos contigo paso a paso para transformar ideas en resultados.
+  </p>
+
+  <div class="process-grid">
+    {steps.map(step => (
+      <div class="process-card reveal">
+        <span class="step-number">{step.number}</span>
+        <h3>{step.title}</h3>
+        <p>{step.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+<style>
+.process-section{
+  padding:4rem 1rem;
+  text-align:center;
+}
+
+.subtitle{
+  color:#666;
+  margin-bottom:2.5rem;
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;
+}
+
+.process-card{
+  background:white;
+  padding:1.8rem;
+  border-radius:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.05);
+}
+
+.step-number{
+  font-size:2rem;
+  font-weight:bold;
+  color:#888;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all .7s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>

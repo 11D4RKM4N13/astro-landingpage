@@ -1,0 +1,93 @@
+---
+const reasons = [
+	{
+		icon: "🎯",
+		title: "Diseño estratégico",
+		text: "No solo hacemos piezas bonitas, diseñamos con intención y objetivo.",
+	},
+	{
+		icon: "🤝",
+		title: "Acompañamiento cercano",
+		text: "Trabajamos contigo durante todo el proceso, no solo entregamos archivos.",
+	},
+	{
+		icon: "📈",
+		title: "Enfoque en resultados",
+		text: "Buscamos que tu comunicación tenga impacto real en tu público.",
+	},
+	{
+		icon: "✨",
+		title: "Soluciones a tu medida",
+		text: "Cada proyecto se adapta a tu marca y a tus necesidades.",
+	},
+];
+---
+
+<section class="why-section reveal">
+	<h2>¿Por qué elegirnos?</h2>
+
+	<div class="reasons-grid">
+		{
+			reasons.map((reason) => (
+				<div class="reason-card">
+					<span class="icon">{reason.icon}</span>
+					<h3>{reason.title}</h3>
+					<p>{reason.text}</p>
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+			}
+		});
+	});
+
+	document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>
+
+<style>
+	.why-section {
+		padding: 4rem 1rem;
+		background: #fafafa;
+		text-align: center;
+	}
+
+	.reasons-grid {
+		margin-top: 2.5rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.reason-card {
+		background: white;
+		padding: 1.5rem;
+		border-radius: 14px;
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+	}
+
+	.icon {
+		font-size: 2rem;
+	}
+
+	.reason-card h3 {
+		margin: 0.6rem 0;
+	}
+
+	/* Animación */
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: all 0.8s ease;
+	}
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>
