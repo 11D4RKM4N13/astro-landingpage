@@ -17,6 +17,7 @@
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^4.3.13",
+		"@astrojs/netlify": "^6.6.4",
 		"@astrojs/react": "^4.4.2",
 		"@astrojs/sitemap": "^3.3.2",
 		"@iconify-json/game-icons": "^1.2.3",
@@ -41,6 +42,7 @@
 		"eslint-plugin-react": "^7.34.0",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"prettier": "^3.2.5",
-		"prettier-plugin-astro": "^0.13.0"
+		"prettier-plugin-astro": "^0.13.0",
+		"terser": "^5.46.0"
 	}
 }
