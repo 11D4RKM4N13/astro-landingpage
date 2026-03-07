@@ -23,71 +23,102 @@ const reasons = [
 ];
 ---
 
-<section class="why-section reveal">
-	<h2>¿Por qué elegirnos?</h2>
+<section class="why-section">
+	<h2 data-aos="fade-up">¿Por qué elegirnos?</h2>
 
-	<div class="reasons-grid">
+	<div class="timeline">
+
 		{
-			reasons.map((reason) => (
-				<div class="reason-card">
-					<span class="icon">{reason.icon}</span>
-					<h3>{reason.title}</h3>
-					<p>{reason.text}</p>
+			reasons.map((reason, index) => (
+				<div
+					class="timeline-item"
+					data-aos="fade-up"
+					data-aos-delay={index * 120}
+				>
+					<div class="icon">{reason.icon}</div>
+
+					<div class="content">
+						<h3>{reason.title}</h3>
+						<p>{reason.text}</p>
+					</div>
 				</div>
 			))
 		}
+
 	</div>
 </section>
 
 <script>
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.add("visible");
-			}
-		});
-	});
+	import AOS from "aos";
+	import "aos/dist/aos.css";
 
-	document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+	AOS.init({
+		duration: 900,
+		once: true
+	});
 </script>
 
 <style>
-	.why-section {
-		padding: 4rem 1rem;
-		background: #fafafa;
-		text-align: center;
-	}
+.why-section{
+	padding:4rem 1rem;
+	background:#fafafa;
+	text-align:center;
+}
 
-	.reasons-grid {
-		margin-top: 2.5rem;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		gap: 1.5rem;
-	}
+.timeline{
+	margin-top:3rem;
+	max-width:800px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+}
 
-	.reason-card {
-		background: white;
-		padding: 1.5rem;
-		border-radius: 14px;
-		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-	}
+.timeline::before{
+	content:"";
+	position:absolute;
+	left:28px;
+	top:0;
+	bottom:0;
+	width:2px;
+	background:#ddd;
+}
 
-	.icon {
-		font-size: 2rem;
-	}
+.timeline-item{
+	display:flex;
+	gap:1.2rem;
+	margin-bottom:2rem;
+	text-align:left;
+	position:relative;
+}
 
-	.reason-card h3 {
-		margin: 0.6rem 0;
-	}
+.icon{
+	width:56px;
+	height:56px;
+	border-radius:50%;
+	background:white;
+	box-shadow:0 6px 14px rgba(0,0,0,0.08);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-size:1.5rem;
+	position:relative;
+	z-index:2;
+}
 
-	/* Animación */
-	.reveal {
-		opacity: 0;
-		transform: translateY(30px);
-		transition: all 0.8s ease;
-	}
-	.reveal.visible {
-		opacity: 1;
-		transform: translateY(0);
-	}
+.content{
+	background:white;
+	padding:1.3rem 1.5rem;
+	border-radius:12px;
+	box-shadow:0 6px 16px rgba(0,0,0,0.05);
+	flex:1;
+}
+
+.content h3{
+	margin-bottom:.3rem;
+}
+
+.content p{
+	color:#666;
+	font-size:.95rem;
+}
 </style>
