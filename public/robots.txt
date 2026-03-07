@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gycocreativos.netlify.app/sitemap-index.xml
