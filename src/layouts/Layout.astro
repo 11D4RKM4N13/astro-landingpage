@@ -55,27 +55,6 @@ const robotsContent = [
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- SEO: Sitemap -->
-		<link rel="sitemap" href="/sitemap-index.xml" />
-
-		<!-- Primary Meta Tags -->
-		<meta
-			name="description"
-			content="GYCO Creativos es una agencia creativa especializada en diseño web, branding y soluciones digitales para negocios."
-		/>
-
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta charset="UTF-8" />
-
-		<!-- Open Graph -->
-		<meta property="og:title" content="GYCO Creativos" />
-		<meta
-			property="og:description"
-			content="Diseño web, branding y soluciones digitales."
-		/>
-		<meta property="og:url" content="https://gycocreativos.netlify.app" />
-		<meta property="og:type" content="website" />
-
 		<!-- Resource Hints -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -104,6 +83,8 @@ const robotsContent = [
 		<meta name="twitter:title" content={twitterTitle} />
 		<meta name="twitter:description" content={twitterDescription} />
 		<meta name="twitter:image" content={fullTwitterImage} />
+
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	</head>
 	<body className="min-h-screen bg-gray-50">
 		<a

@@ -1,0 +1,127 @@
+---
+const steps = [
+	{
+		icon: "❓",
+		title: "El problema",
+		text: "Muchas marcas tienen buenas ideas, pero no logran comunicarlas de forma clara y profesional.",
+	},
+	{
+		icon: "🎨",
+		title: "La solución",
+		text: "Convertimos tus ideas en piezas visuales estratégicas que conectan con tu público.",
+	},
+	{
+		icon: "📈",
+		title: "El resultado",
+		text: "Una imagen más fuerte, mayor recordación de marca y mejor impacto en tu comunicación.",
+	},
+];
+---
+
+<section class="flow-section">
+	<h2>Cómo ayudamos a tu marca</h2>
+
+	<div class="flow-container">
+		{
+			steps.map((step, index) => (
+				<>
+					<div class="flow-step reveal">
+						<span class="icon">{step.icon}</span>
+						<h3>{step.title}</h3>
+						<p>{step.text}</p>
+					</div>
+
+					{index < steps.length - 1 && <div class="flow-arrow reveal">→</div>}
+				</>
+			))
+		}
+	</div>
+</section>
+
+<script>
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("visible");
+				}
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	document.querySelectorAll(".reveal").forEach((el) => {
+		observer.observe(el);
+	});
+</script>
+
+<style>
+	h2 {
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.flow-section {
+		padding: 6rem 2rem;
+		text-align: center;
+	}
+
+	.flow-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-top: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.flow-step {
+		background: #fff;
+		border-radius: 14px;
+		padding: 1.8rem;
+		max-width: 460px;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+	}
+
+	.flow-step h3 {
+		margin: 0.5rem 0;
+	}
+
+	.flow-step p {
+		font-size: 1.1rem;
+		color: #555;
+	}
+
+	.icon {
+		font-size: 2.2rem;
+	}
+
+	/* Flechas */
+	.flow-arrow {
+		font-size: 2rem;
+		color: #bbb;
+	}
+
+	/* Animación */
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: all 0.7s ease;
+	}
+
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.flow-container {
+			flex-direction: column;
+		}
+		.flow-arrow {
+			transform: rotate(90deg);
+		}
+	}
+</style>

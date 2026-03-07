@@ -1,7 +1,7 @@
 export const SITE = {
 	title: "G&CO Creativos",
 	description:
-		"A minimal, modern starter template for building fast websites with Astro",
+		"Agencia de diseño gráfico y branding que ayuda a las marcas a comunicar su mensaje de forma clara y profesional.",
 	defaultLanguage: "es",
 	url: "https://gycocreativos.netlify.app/",
 	author: "Edwin Suarez",
