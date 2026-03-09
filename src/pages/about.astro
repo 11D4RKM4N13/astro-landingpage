@@ -3,62 +3,156 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollReveal from "../components/ScrollReveal.tsx";
+import TeamSection from "../components/TeamSection.astro";
 import { SITE } from "../config/site.mjs";
 ---
 
 <Layout
-  title={`About | ${SITE.title}`}
-  description="Learn more about Astro Base - a minimal, modern starter template for building fast websites with Astro, React, Tailwind CSS, and Framer Motion."
-  canonicalURL={`${SITE.url}/about`}
+	title={`About | ${SITE.title}`}
+	description="Agencia creativa especializada en diseño, branding y marketing digital."
+	canonicalURL={`${SITE.url}/about`}
 >
-  <Header />
-  <main id="main-content" role="main">
-    <section class="max-w-4xl mx-auto px-4 py-20">
-      <ScrollReveal client:idle>
-        <h1 class="text-5xl font-bold text-gray-900 mb-4">G&CO Creativos</h1>
-      </ScrollReveal>
-      <ScrollReveal client:load delay={0.1}>
-        <p class="text-xl text-gray-600 mb-12">
-          Somos una agencia de diseño y marketing digital especializada en soluciones creativas para empresas. Nuestro equipo de expertos trabaja estrechamente con cada cliente para entender sus necesidades y objetivos, ofreciendo servicios personalizados que incluyen diseño gráfico, desarrollo web, gestión de redes sociales, publicidad digital y estrategias de branding. En G&CO Creativos, nos apasiona ayudar a las marcas a destacar en el mercado competitivo actual, creando experiencias únicas que conectan con su audiencia y generan resultados tangibles.
-        </p>
-      </ScrollReveal>
+	<Header />
 
-      <div class="prose prose-lg max-w-none">
-        <ScrollReveal client:load delay={0.2}>
-          <h2>Productos y servicios</h2>
-          <ul>
-            <li>
-              <strong>Astro</strong> - Lightning-fast static site generation
-            </li>
-            <li>
-              <strong>React</strong> - Component-based UI library for interactive
-              components
-            </li>
-            <li>
-              <strong>Tailwind CSS v4</strong> - Utility-first CSS framework for rapid
-              styling
-            </li>
-            <li>
-              <strong>Framer Motion</strong> - Smooth scroll reveal animations with
-              spring physics
-            </li>
-            <li>
-              <strong>Astro Icons</strong> - Beautiful icon component library with
-              Tabler icon set
-            </li>
-            <li><strong>MDX</strong> - Write JSX in your Markdown documents</li>
-            <li>
-              <strong>Sass</strong> - CSS preprocessor with variables, mixins, and
-              nesting
-            </li>
-            <li>
-              <strong>Tailwind Typography</strong> - Beautiful typography styles for
-              markdown content
-            </li>
-          </ul>
-        </ScrollReveal>
-      </div>
-    </section>
-  </main>
-  <Footer />
+	<main id="main-content" role="main">
+		<section class="max-w-5xl mx-auto px-4 py-20">
+			<ScrollReveal client:idle>
+				<h1 class="text-5xl font-bold text-gray-900 mb-4">G&CO Creativos</h1>
+			</ScrollReveal>
+
+			<ScrollReveal client:load delay={0.1}>
+				<p class="text-xl text-gray-600 mb-16">
+					Somos una agencia de diseño y marketing digital especializada en
+					soluciones creativas para empresas. Nuestro equipo trabaja
+					estrechamente con cada cliente para entender sus objetivos y
+					desarrollar estrategias visuales que fortalezcan su marca, mejoren su
+					presencia digital y generen resultados reales.
+				</p>
+			</ScrollReveal>
+
+			{/* SERVICIOS */}
+
+			<div class="mb-20">
+				<ScrollReveal client:load delay={0.2}>
+					<h2 class="text-3xl font-semibold mb-10 text-gray-900">
+						Productos y servicios
+					</h2>
+				</ScrollReveal>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<ScrollReveal client:load delay={0.25}>
+						<div class="p-6 border rounded-xl hover:shadow-lg transition">
+							<h3 class="text-xl font-semibold mb-2">Diseño gráfico</h3>
+							<p class="text-gray-600">
+								Creación de piezas visuales profesionales para marcas, campañas
+								publicitarias, empaques y material corporativo.
+							</p>
+						</div>
+					</ScrollReveal>
+
+					<ScrollReveal client:load delay={0.3}>
+						<div class="p-6 border rounded-xl hover:shadow-lg transition">
+							<h3 class="text-xl font-semibold mb-2">Branding</h3>
+							<p class="text-gray-600">
+								Construimos identidades de marca sólidas que conectan con las
+								personas y generan reconocimiento en el mercado.
+							</p>
+						</div>
+					</ScrollReveal>
+
+					<ScrollReveal client:load delay={0.35}>
+						<div class="p-6 border rounded-xl hover:shadow-lg transition">
+							<h3 class="text-xl font-semibold mb-2">Marketing digital</h3>
+							<p class="text-gray-600">
+								Gestión de campañas, redes sociales y publicidad online para
+								aumentar visibilidad y atraer nuevos clientes.
+							</p>
+						</div>
+					</ScrollReveal>
+
+					<ScrollReveal client:load delay={0.4}>
+						<div class="p-6 border rounded-xl hover:shadow-lg transition">
+							<h3 class="text-xl font-semibold mb-2">Desarrollo web</h3>
+							<p class="text-gray-600">
+								Diseñamos y desarrollamos sitios web modernos, optimizados para
+								rendimiento, SEO y experiencia de usuario.
+							</p>
+						</div>
+					</ScrollReveal>
+				</div>
+			</div>
+
+			{/* MISIÓN / VISIÓN */}
+
+			<div class="grid md:grid-cols-2 gap-12 mb-20">
+				<ScrollReveal client:load delay={0.45}>
+					<div>
+						<h2 class="text-2xl font-semibold mb-3">Nuestra misión</h2>
+						<p class="text-gray-600">
+							Ayudar a las empresas a crecer mediante soluciones creativas,
+							estrategias de comunicación efectivas y experiencias visuales que
+							conecten con su público.
+						</p>
+					</div>
+				</ScrollReveal>
+
+				<ScrollReveal client:load delay={0.5}>
+					<div>
+						<h2 class="text-2xl font-semibold mb-3">Nuestra visión</h2>
+						<p class="text-gray-600">
+							Convertirnos en una agencia referente en creatividad e innovación
+							digital, impulsando marcas que quieran destacar y evolucionar en
+							el entorno digital.
+						</p>
+					</div>
+				</ScrollReveal>
+			</div>
+
+			{/* PROCESO */}
+
+			<div>
+				<ScrollReveal client:load delay={0.55}>
+					<h2 class="text-3xl font-semibold mb-10 text-gray-900">
+						Nuestro proceso
+					</h2>
+				</ScrollReveal>
+
+				<div class="grid md:grid-cols-3 gap-8">
+					<ScrollReveal client:load delay={0.6}>
+						<div>
+							<h3 class="font-semibold mb-2">1. Investigación</h3>
+							<p class="text-gray-600">
+								Analizamos el negocio, el mercado y la audiencia objetivo para
+								definir una estrategia clara.
+							</p>
+						</div>
+					</ScrollReveal>
+
+					<ScrollReveal client:load delay={0.65}>
+						<div>
+							<h3 class="font-semibold mb-2">2. Creatividad</h3>
+							<p class="text-gray-600">
+								Desarrollamos conceptos visuales y soluciones creativas
+								alineadas con la identidad de la marca.
+							</p>
+						</div>
+					</ScrollReveal>
+
+					<ScrollReveal client:load delay={0.7}>
+						<div>
+							<h3 class="font-semibold mb-2">3. Implementación</h3>
+							<p class="text-gray-600">
+								Ejecutamos el proyecto optimizando cada detalle para lograr
+								resultados efectivos.
+							</p>
+						</div>
+					</ScrollReveal>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<TeamSection />
+
+	<Footer />
 </Layout>
