@@ -6,14 +6,7 @@ import { SITE } from "../config/site.mjs";
 const web3formsAccessKey = SITE.web3formsAccessKey || "";
 ---
 
-<form
-	id="contact-form"
-	class="space-y-6"
-	aria-label="Contact form"
-	novalidate
-	action="https://api.web3forms.com/submit"
-	method="POST"
->
+<form id="contact-form" class="space-y-6" aria-label="Contact form" novalidate>
 	<!-- Web3Forms Access Key (hidden) -->
 	{
 		web3formsAccessKey && (
@@ -43,8 +36,8 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 		role="alert"
 		aria-live="polite"
 	>
-		<p class="font-medium">Thank you for your message!</p>
-		<p class="text-sm mt-1">We'll get back to you soon.</p>
+		<p class="font-medium">Gracias por tu mensaje!</p>
+		<p class="text-sm mt-1">Te contactaremos pronto.</p>
 	</div>
 
 	<!-- Error Message -->
@@ -212,12 +205,12 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 	nameInput.addEventListener("blur", () => {
 		const value = nameInput.value.trim();
 		if (!value) {
-			showFieldError(nameInput, nameError, "Name is required");
+			showFieldError(nameInput, nameError, "El nombre es requerido");
 		} else if (value.length < 2) {
 			showFieldError(
 				nameInput,
 				nameError,
-				"Name must be at least 2 characters"
+				"El nombre debe tener al menos 2 caracteres"
 			);
 		} else {
 			clearFieldError(nameInput, nameError);
@@ -227,12 +220,16 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 	emailInput.addEventListener("blur", () => {
 		const value = emailInput.value.trim();
 		if (!value) {
-			showFieldError(emailInput, emailError, "Email is required");
+			showFieldError(
+				emailInput,
+				emailError,
+				"El correo electrónico es requerido"
+			);
 		} else if (!validateEmail(value)) {
 			showFieldError(
 				emailInput,
 				emailError,
-				"Please enter a valid email address"
+				"Por favor, introduce una dirección de correo electrónico válida"
 			);
 		} else {
 			clearFieldError(emailInput, emailError);
@@ -242,12 +239,12 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 	messageInput.addEventListener("blur", () => {
 		const value = messageInput.value.trim();
 		if (!value) {
-			showFieldError(messageInput, messageError, "Message is required");
+			showFieldError(messageInput, messageError, "El mensaje es requerido");
 		} else if (value.length < 10) {
 			showFieldError(
 				messageInput,
 				messageError,
-				"Message must be at least 10 characters"
+				"El mensaje debe tener al menos 10 caracteres"
 			);
 		} else {
 			clearFieldError(messageInput, messageError);
@@ -267,7 +264,7 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 			"p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 text-sm";
 		warningDiv.innerHTML = `
       <p class="font-medium mb-1">⚠️ Web3Forms not configured</p>
-      <p>Please add your Web3Forms access key to <code class="bg-yellow-100 px-1 rounded">src/config/site.mjs</code>. Get your key from <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" class="underline">web3forms.com</a></p>
+      <p>Por favor, agrega tu clave de acceso de Web3Forms a <code class="bg-yellow-100 px-1 rounded">src/config/site.mjs</code>. Obtén tu clave en <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" class="underline">web3forms.com</a></p>
     `;
 		form.insertBefore(warningDiv, form.firstChild);
 	}
@@ -280,7 +277,7 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 		// Check if access key is configured
 		if (!hasAccessKey) {
 			errorText.textContent =
-				"Form is not configured. Please contact the site administrator.";
+				"El formulario no está configurado. Por favor, contacta al administrador del sitio.";
 			errorMessage.classList.remove("hidden");
 			errorMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
 			return;

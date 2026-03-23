@@ -6,7 +6,7 @@ export const SITE = {
 	url: "https://jyacintasylanyards.netlify.app", // ← tenías una & inválida en la URL
 	author: "Edwin Suarez",
 	ogImage: "/og-image.png",
-	web3formsAccessKey: "",
+	web3formsAccessKey: "c4d0565a-2556-48ce-8ee5-9290a351af95",
 	locale: "es_CO",
 	twitterHandle: "@jyacintasylanyards", // opcional, si tienen cuenta
 };

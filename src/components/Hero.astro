@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "./ScrollReveal.tsx";
+
+import lanyardImage from "../assets/lanyard.png";
 ---
 
 <section
@@ -37,10 +40,14 @@ import ScrollReveal from "./ScrollReveal.tsx";
 				delay={0.4}
 				eager
 			>
-				<img
-					src="/lanyard.png"
+				<Image
+					src={lanyardImage}
 					alt="Cintas y lanyards personalizados"
-					class="w-full h-auto rounded-xl object-cover"
+					class="w-full h-auto rounded-xl"
+					format="webp"
+					quality={80}
+					loading="eager"
+					fetchpriority="high"
 				/>
 			</ScrollReveal>
 		</div>
