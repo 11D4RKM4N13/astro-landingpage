@@ -76,20 +76,22 @@ import { Icon } from "astro-icon/components";
 		<ul class="flex flex-col py-4" role="list">
 			<li>
 				<a
-					href="/features"
-					class="block px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+					href="/productos"
+					class="block px-4 py-3 font-heading text-gray-dark
+				hover:bg-primary/5 hover:text-primary transition-colors"
 					role="menuitem"
 					aria-current={Astro.url.pathname === "/productos"
 						? "page"
 						: undefined}
 				>
-					Productos y Servicios
+					Productos y servicios
 				</a>
 			</li>
 			<li>
 				<a
-					href="/about"
-					class="block px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+					href="/sobre-nosotros"
+					class="block px-4 py-3 font-heading text-gray-dark
+			hover:bg-primary/5 hover:text-primary transition-colors"
 					role="menuitem"
 					aria-current={Astro.url.pathname === "/sobre-nosotros"
 						? "page"
@@ -98,51 +100,57 @@ import { Icon } from "astro-icon/components";
 					Sobre Nosotros
 				</a>
 			</li>
-			<li>
+			<li class="px-4 py-3">
 				<a
-					href="/contact"
-					class="block px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+					href="/contacto"
+					class="block text-center px-4 py-3 bg-accent
+		hover:bg-accent-hover text-white font-heading font-medium rounded-lg
+		transition-colors"
 					role="menuitem"
 					aria-current={Astro.url.pathname === "/contacto" ? "page" : undefined}
 				>
 					Contacto
 				</a>
 			</li>
+
+			<script>
+				// Mobile menu toggle functionality
+				const menuButton = document.getElementById("mobile-menu-button");
+				const mobileMenu = document.getElementById("mobile-menu");
+
+				if (menuButton && mobileMenu) {
+					menuButton.addEventListener("click", () => {
+						const isExpanded =
+							menuButton.getAttribute("aria-expanded") === "true";
+						menuButton.setAttribute("aria-expanded", String(!isExpanded));
+						mobileMenu.classList.toggle("hidden");
+					});
+
+					// Close menu when clicking outside
+					document.addEventListener("click", (e) => {
+						if (
+							!menuButton.contains(e.target as Node) &&
+							!mobileMenu.contains(e.target as Node) &&
+							!mobileMenu.classList.contains("hidden")
+						) {
+							menuButton.setAttribute("aria-expanded", "false");
+							mobileMenu.classList.add("hidden");
+						}
+					});
+
+					// Close menu on escape key
+					document.addEventListener("keydown", (e) => {
+						if (
+							e.key === "Escape" &&
+							!mobileMenu.classList.contains("hidden")
+						) {
+							menuButton.setAttribute("aria-expanded", "false");
+							mobileMenu.classList.add("hidden");
+							menuButton.focus();
+						}
+					});
+				}
+			</script>
 		</ul>
 	</div>
 </header>
-
-<script>
-	// Mobile menu toggle functionality
-	const menuButton = document.getElementById("mobile-menu-button");
-	const mobileMenu = document.getElementById("mobile-menu");
-
-	if (menuButton && mobileMenu) {
-		menuButton.addEventListener("click", () => {
-			const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-			menuButton.setAttribute("aria-expanded", String(!isExpanded));
-			mobileMenu.classList.toggle("hidden");
-		});
-
-		// Close menu when clicking outside
-		document.addEventListener("click", (e) => {
-			if (
-				!menuButton.contains(e.target as Node) &&
-				!mobileMenu.contains(e.target as Node) &&
-				!mobileMenu.classList.contains("hidden")
-			) {
-				menuButton.setAttribute("aria-expanded", "false");
-				mobileMenu.classList.add("hidden");
-			}
-		});
-
-		// Close menu on escape key
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
-				menuButton.setAttribute("aria-expanded", "false");
-				mobileMenu.classList.add("hidden");
-				menuButton.focus();
-			}
-		});
-	}
-</script>
