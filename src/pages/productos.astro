@@ -4,54 +4,82 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollReveal from "../components/ScrollReveal.tsx";
 import { SITE } from "../config/site.mjs";
-
 import { getCollection } from "astro:content";
 import ProductCard from "../components/ProductCard.astro";
 
 const todos = await getCollection("productos");
 const categorias = [
+	"todos",
 	...new Set(todos.map((p: (typeof todos)[number]) => p.data.categoria)),
 ];
 ---
 
 <Layout
-	title={`Cintas y Lanyards | ${SITE.title}`}
-	description="Descubre nuestros productos y servicios de alta calidad para crear experiencias web modernas. Desde cintas personalizadas hasta lanyards, ofrecemos soluciones innovadoras para tus necesidades."
-	canonicalURL={`${SITE.url}/productos-y-servicios`}
+	title={`Catálogo de Productos | ${SITE.title}`}
+	description="Catálogo de lanyards, cintas sublimadas, portacarnet y accesorios personalizados. Fabricación a medida para empresas y eventos en todo Colombia."
+	canonicalURL={`${SITE.url}/productos`}
 >
 	<Header />
 	<main id="main-content" role="main">
-		<section class="max-w-6xl mx-auto px-4 py-20">
-			<ScrollReveal client:idle>
-				<h1 class="text-5xl font-bold text-gray-900 mb-4">
-					Productos y Servicios
-				</h1>
-			</ScrollReveal>
-			<ScrollReveal client:load delay={0.1}>
-				<p class="text-xl text-gray-600 mb-12">
-					Todo lo que necesitas para crear experiencias web modernas.
-				</p>
-			</ScrollReveal>
+		<!-- Hero con imagen de fondo -->
+		<section
+			class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden"
+		>
+			<img
+				src="/hero-productos.webp"
+				alt="Catálogo de productos J&A Cintas y Lanyards"
+				class="absolute inset-0 w-full h-full object-cover"
+				onerror="this.style.display='none'"
+			/>
+			<div class="absolute inset-0 bg-primary"></div>
+			<div class="relative z-10 text-center px-4">
+				<ScrollReveal client:load>
+					<span
+						class="font-heading text-accent text-sm uppercase tracking-widest font-medium"
+					>
+						Catálogo
+					</span>
+					<h1
+						class="font-heading text-4xl md:text-5xl font-bold text-white mt-2"
+					>
+						Nuestros productos
+					</h1>
+					<p class="font-body text-white/80 mt-3 max-w-xl mx-auto">
+						Fabricamos a medida para empresas, eventos y promociones en todo
+						Colombia.
+					</p>
+				</ScrollReveal>
+			</div>
 		</section>
 
-		<section class="max-w-6xl mx-auto px-4 py-20">
-			<div class="flex gap-3 flex-wrap justify-center mb-12">
-				{
-					categorias.map((cat) => (
-						<button
-							data-categoria={cat}
-							class="filtro border border-primary text-primary hover:bg-primary hover:text-white font-heading text-sm px-4 py-2 rounded-lg transition-colors duration-200"
-						>
-							{cat}
-						</button>
-					))
-				}
-			</div>
+		<!-- Filtros + Grid -->
+		<section class="max-w-6xl mx-auto px-4 py-16">
+			<!-- Filtros -->
+			<ScrollReveal client:load>
+				<div class="flex gap-3 flex-wrap justify-center mb-12">
+					{
+						categorias.map((cat) => (
+							<button
+								data-filtro={cat}
+								class:list={[
+									"filtro-btn font-heading text-sm font-medium px-5 py-2 rounded-lg border transition-colors duration-200 capitalize",
+									cat === "todos"
+										? "bg-primary text-white border-primary"
+										: "text-primary border-primary hover:bg-primary hover:text-white",
+								]}
+							>
+								{cat}
+							</button>
+						))
+					}
+				</div>
+			</ScrollReveal>
 
+			<!-- Grid -->
 			<div id="grid-productos" class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{
 					todos.map((p: (typeof todos)[number]) => (
-						<div data-cat={p.data.categoria}>
+						<div data-categoria={p.data.categoria} class="producto-item">
 							<ProductCard
 								nombre={p.data.nombre}
 								descripcion={p.data.descripcion}
@@ -64,21 +92,88 @@ const categorias = [
 					))
 				}
 			</div>
+
+			<!-- Estado vacío -->
+			<div id="sin-resultados" class="hidden text-center py-20">
+				<p class="font-heading text-2xl text-primary/30 font-medium">
+					No hay productos en esta categoría
+				</p>
+			</div>
+		</section>
+
+		<!-- CTA final -->
+		<section class="bg-gray-light py-16 px-4">
+			<div
+				class="max-w-2xl mx-auto text-center flex flex-col items-center gap-6"
+			>
+				<ScrollReveal client:load>
+					<h2 class="font-heading text-2xl font-semibold text-primary">
+						¿No encontraste lo que buscas?
+					</h2>
+					<p class="font-body text-gray-dark/70 mt-2">
+						Fabricamos productos personalizados a medida. Escríbenos y te
+						asesoramos sin compromiso.
+					</p>
+				</ScrollReveal>
+				<ScrollReveal client:load delay={0.2}>
+					<a
+						href={`https://wa.me/573208556455?text=${encodeURIComponent("Hola, busco un producto personalizado y no lo encontré en el catálogo.")}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="bg-green hover:bg-green-hover
+					text-white font-heading font-semibold px-8 py-4 rounded-lg transition-colors
+					duration-200 flex items-center gap-2"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+							></path>
+							<path
+								d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.857L.057 23.882l6.174-1.453A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.724.876.936-3.614-.235-.372A9.818 9.818 0 1112 21.818z"
+							></path>
+						</svg>
+						Consultar por WhatsApp
+					</a>
+				</ScrollReveal>
+			</div>
 		</section>
 	</main>
 	<Footer />
-</Layout>
 
-<script>
-	const botones = document.querySelectorAll<HTMLButtonElement>(".filtro");
-	const cards = document.querySelectorAll<HTMLElement>("[data-cat]");
+	<script>
+		const botones = document.querySelectorAll<HTMLButtonElement>(".filtro-btn");
+		const items = document.querySelectorAll<HTMLElement>(".producto-item");
+		const sinResultados = document.getElementById("sin-resultados");
 
-	botones.forEach((btn) => {
-		btn.addEventListener("click", () => {
-			const cat = btn.dataset.categoria;
-			cards.forEach((card) => {
-				card.style.display = card.dataset.cat === cat ? "block" : "none";
+		botones.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const filtro = btn.dataset.filtro;
+
+				// Actualizar estilos activos
+				botones.forEach((b) => {
+					b.classList.remove("bg-primary", "text-white");
+					b.classList.add("text-primary");
+				});
+				btn.classList.add("bg-primary", "text-white");
+				btn.classList.remove("text-primary");
+
+				// Filtrar
+				let visibles = 0;
+				items.forEach((item) => {
+					const coincide =
+						filtro === "todos" || item.dataset.categoria === filtro;
+					item.style.display = coincide ? "block" : "none";
+					if (coincide) visibles++;
+				});
+
+				sinResultados?.classList.toggle("hidden", visibles > 0);
 			});
 		});
-	});
-</script>
+	</script>
+</Layout>

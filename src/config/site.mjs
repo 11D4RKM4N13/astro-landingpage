@@ -1,11 +1,12 @@
 export const SITE = {
 	title: "J&A Cintas y Lanyards",
-	description: "Hecho para destacar, diseñado para recordar.",
+	description:
+		"Fabricamos lanyards y cintas personalizadas para eventos, empresas y promociones en Colombia. Calidad garantizada y envío nacional.",
 	defaultLanguage: "es",
-	url: "https://j&acintasylanyards.netlify.app/",
+	url: "https://jyacintasylanyards.netlify.app", // ← tenías una & inválida en la URL
 	author: "Edwin Suarez",
-	ogImage: "/og-image.png", // Add this image to your public folder
-	// Web3Forms: Get your access key from https://web3forms.com
-	// Leave empty to disable form submissions
-	web3formsAccessKey: "", // e.g., "YOUR_ACCESS_KEY_HERE"
+	ogImage: "/og-image.png",
+	web3formsAccessKey: "",
+	locale: "es_CO",
+	twitterHandle: "@jyacintasylanyards", // opcional, si tienen cuenta
 };
