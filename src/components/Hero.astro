@@ -32,24 +32,49 @@ import lanyardImage from "../assets/lanyard.png";
 
 		<!-- Columna derecha: imagen -->
 		<div class="flex-1">
-			<ScrollReveal
-				client:load
-				direction="left"
-				duration={1.4}
-				distance={50}
-				delay={0.4}
-				eager
-			>
-				<Image
-					src={lanyardImage}
-					alt="Cintas y lanyards personalizados"
-					class="w-full h-auto rounded-xl"
-					format="webp"
-					quality={80}
-					loading="eager"
-					fetchpriority="high"
-				/>
-			</ScrollReveal>
+			<!-- Mobile: animación desde abajo -->
+			<div class="block md:hidden">
+				<ScrollReveal
+					client:load
+					direction="up"
+					duration={1.0}
+					distance={40}
+					delay={0.3}
+					eager
+				>
+					<Image
+						src={lanyardImage}
+						alt="Cintas y lanyards personalizados"
+						class="w-full h-auto rounded-xl"
+						format="webp"
+						quality={80}
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</ScrollReveal>
+			</div>
+
+			<!-- Desktop: animación desde la derecha -->
+			<div class="hidden md:block overflow-hidden">
+				<ScrollReveal
+					client:load
+					direction="left"
+					duration={1.4}
+					distance={60}
+					delay={0.4}
+					eager
+				>
+					<Image
+						src={lanyardImage}
+						alt="Cintas y lanyards personalizados"
+						class="w-full h-auto rounded-xl"
+						format="webp"
+						quality={80}
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</ScrollReveal>
+			</div>
 		</div>
 	</div>
 </section>
