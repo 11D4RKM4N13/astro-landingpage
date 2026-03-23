@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ScrollReveal from "../components/ScrollReveal.tsx";
+import { SITE } from "../config/site.mjs";
+---
+
+<Layout
+	title={`Sobre Nosotros | ${SITE.title}`}
+	description="J&A Cintas y Lanyards es una empresa dedicada a la fabricación y distribución de cintas personalizadas, lanyards, pulseras de silicona y otros productos promocionales. Con más de 10 años de experiencia, ofrecemos soluciones creativas y de alta calidad para ayudar a las empresas a destacar su marca en eventos, ferias y campañas publicitarias."
+	canonicalURL={`${SITE.url}/sobre-nosotros`}
+>
+	<Header />
+
+	<main id="main-content" role="main">
+		<section class="max-w-5xl mx-auto px-4 py-20">
+			<ScrollReveal client:idle>
+				<h1 class="text-5xl font-bold text-gray-900 mb-4">
+					J&A Cintas y Lanyards
+				</h1>
+			</ScrollReveal>
+
+			<ScrollReveal client:load delay={0.1}>
+				<p class="text-xl text-gray-600 mb-16">
+					En J&A Cintas y Lanyards, nos apasiona ayudar a las empresas a
+					destacar su marca a través de productos promocionales personalizados.
+					Con más de 10 años de experiencia en la industria, nos especializamos
+					en la fabricación y distribución de cintas personalizadas, lanyards,
+					pulseras de silicona y otros artículos promocionales de alta calidad.
+					Nuestro compromiso es ofrecer soluciones creativas y efectivas para
+					que nuestros clientes puedan brillar en eventos, ferias y campañas
+					publicitarias.
+				</p>
+			</ScrollReveal>
+
+			<Footer />
+		</section>
+	</main>
+</Layout>

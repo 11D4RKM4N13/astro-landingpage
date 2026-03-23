@@ -1,0 +1,84 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ScrollReveal from "../components/ScrollReveal.tsx";
+import { SITE } from "../config/site.mjs";
+
+import { getCollection } from "astro:content";
+import ProductCard from "../components/ProductCard.astro";
+
+const todos = await getCollection("productos");
+const categorias = [
+	...new Set(todos.map((p: (typeof todos)[number]) => p.data.categoria)),
+];
+---
+
+<Layout
+	title={`Cintas y Lanyards | ${SITE.title}`}
+	description="Descubre nuestros productos y servicios de alta calidad para crear experiencias web modernas. Desde cintas personalizadas hasta lanyards, ofrecemos soluciones innovadoras para tus necesidades."
+	canonicalURL={`${SITE.url}/productos-y-servicios`}
+>
+	<Header />
+	<main id="main-content" role="main">
+		<section class="max-w-6xl mx-auto px-4 py-20">
+			<ScrollReveal client:idle>
+				<h1 class="text-5xl font-bold text-gray-900 mb-4">
+					Productos y Servicios
+				</h1>
+			</ScrollReveal>
+			<ScrollReveal client:load delay={0.1}>
+				<p class="text-xl text-gray-600 mb-12">
+					Todo lo que necesitas para crear experiencias web modernas.
+				</p>
+			</ScrollReveal>
+		</section>
+
+		<section class="max-w-6xl mx-auto px-4 py-20">
+			<div class="flex gap-3 flex-wrap justify-center mb-12">
+				{
+					categorias.map((cat) => (
+						<button
+							data-categoria={cat}
+							class="filtro border border-primary text-primary hover:bg-primary hover:text-white font-heading text-sm px-4 py-2 rounded-lg transition-colors duration-200"
+						>
+							{cat}
+						</button>
+					))
+				}
+			</div>
+
+			<div id="grid-productos" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					todos.map((p: (typeof todos)[number]) => (
+						<div data-cat={p.data.categoria}>
+							<ProductCard
+								nombre={p.data.nombre}
+								descripcion={p.data.descripcion}
+								precio={p.data.precio}
+								categoria={p.data.categoria}
+								imagen={p.data.imagen || ""}
+								slug={p.slug}
+							/>
+						</div>
+					))
+				}
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	const botones = document.querySelectorAll<HTMLButtonElement>(".filtro");
+	const cards = document.querySelectorAll<HTMLElement>("[data-cat]");
+
+	botones.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const cat = btn.dataset.categoria;
+			cards.forEach((card) => {
+				card.style.display = card.dataset.cat === cat ? "block" : "none";
+			});
+		});
+	});
+</script>
