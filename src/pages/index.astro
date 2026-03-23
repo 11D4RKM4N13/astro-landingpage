@@ -2,15 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import SectionDivider from "../components/SectionDivider.astro";
-import FlowSection from "../components/FlowSection.astro";
-import ServicesSummary from "../components/ServicesSummary.astro";
-import WhyChooseUs from "../components/WhyChooseUs.astro";
-import ProcessSection from "../components/ProcessSection.astro";
-import PortfolioSection from "../components/PortfolioSection.astro";
+
+import SocialProof from "../components/SocialProof.astro";
+
 import WhatsappButton from "../components/WhatsappButton.astro";
 import Footer from "../components/Footer.astro";
 import { SITE } from "../config/site.mjs";
+
+import { getCollection } from "astro:content";
+import ProductCard from "../components/ProductCard.astro";
+
+import Steps from "../components/Steps.astro";
+
+const destacados = (await getCollection("productos"))
+	.filter((p: any) => p.data.destacado)
+	.slice(0, 3);
 ---
 
 <Layout
@@ -25,43 +31,53 @@ import { SITE } from "../config/site.mjs";
 		<!-- Sección de héroe -->
 		<Hero />
 
-		<!-- Sección de flujo -->
-		<FlowSection />
+		<!-- Sección de prueba de social -->
+		<SocialProof />
 
-		<SectionDivider
-			image="/section-divider-1.jpg"
-			text="Nuestros servicios"
-			height="20vh"
-		/>
+		<!-- -->
+		<section class="max-w-6xl mx-auto px-4 py-20">
+			<h2
+				class="font-heading text-heading-xl font-semibold text-primary text-center mb-4"
+			>
+				Nuestros productos
+			</h2>
+			<p class="font-body text-center text-gray-dark/70 mb-12 max-w-xl mx-auto">
+				Fabricamos lanyards y cintas personalizadas para todo tipo de eventos y
+				empresas.
+			</p>
 
-		<!-- Servicios resumidos -->
-		<ServicesSummary />
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					destacados.map((p: any) => (
+						<ProductCard
+							nombre={p.data.nombre}
+							descripcion={p.data.descripcion}
+							precio={p.data.precio}
+							categoria={p.data.categoria}
+							imagen={p.data.imagen}
+							slug={p.slug}
+						/>
+					))
+				}
+			</div>
 
-		<SectionDivider
-			image="/section-divider-2.jpg"
-			text="Por qué elegirnos"
-			height="20vh"
-		/>
-
-		<!-- Por qué elegirnos -->
-		<WhyChooseUs />
-
-		<!-- Proceso -->
-		<ProcessSection />
-
-		<SectionDivider
-			image="/section-divider-4.jpg"
-			text="Portafolio destacado"
-			height="20vh"
-		/>
-
-		<!-- Portafolio -->
-		<PortfolioSection />
-
-		<!-- Botón de WhatsApp -->
-		<WhatsappButton />
+			<div class="text-center mt-12">
+				<a
+					href="/productos"
+					class="border border-primary text-primary hover:bg-primary hover:text-white font-heading font-medium px-8 py-3 rounded-lg transition-colors duration-200"
+				>
+					Ver catálogo completo
+				</a>
+			</div>
+		</section>
 	</main>
 
-	<!-- Pie de página -->
-	<Footer />
+	<!-- Sección de pasos -->
+	<Steps />
 </Layout>
+
+<!-- Botón de WhatsApp -->
+<WhatsappButton />
+
+<!-- Pie de página -->
+<Footer />

@@ -1,0 +1,48 @@
+---
+interface Props {
+	nombre: string;
+	descripcion: string;
+	precio: number;
+	categoria: string;
+	imagen: string;
+	slug: string;
+}
+
+const { nombre, descripcion, precio, categoria, imagen, slug } = Astro.props;
+
+const whatsappMsg = encodeURIComponent(
+	`Hola, me interesa el producto: ${nombre}`
+);
+---
+
+<article
+	class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col"
+>
+	<div class="overflow-hidden">
+		<img
+			src={imagen}
+			alt={nombre}
+			class="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
+		/>
+	</div>
+
+	<div class="p-5 flex flex-col flex-1 gap-3">
+		<span
+			class="text-xs font-heading font-medium uppercase tracking-wide text-accent"
+		>
+			{categoria}
+		</span>
+		<h3 class="font-heading text-lg font-semibold text-primary">
+			{nombre}
+		</h3>
+		<p class="font-body text-sm text-gray-dark/80 flex-1">
+			{descripcion}
+		</p>
+
+		<div class="flex items-center justify-between mt-2">
+			<span class="font-heading text-xl font-bold text-primary">
+				${precio.toLocaleString("es-CO")}
+			</span>
+		</div>
+	</div>
+</article>
