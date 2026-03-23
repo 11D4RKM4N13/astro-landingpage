@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
 	nombre: string;
 	descripcion: string;
-	precio: number;
+	precio?: number;
 	categoria: string;
 	imagen: string;
 	slug: string;
@@ -11,18 +13,24 @@ interface Props {
 const { nombre, descripcion, precio, categoria, imagen, slug } = Astro.props;
 
 const whatsappMsg = encodeURIComponent(
-	`Hola, me interesa el producto: ${nombre}`
+	`Hola, me interesa el producto: ${nombre}. ¿Me pueden dar más información?`
 );
 ---
 
 <article
 	class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col"
 >
-	<div class="overflow-hidden">
-		<img
+	<div class="overflow-hidden aspect-3/2">
+		<Image
 			src={imagen}
 			alt={nombre}
-			class="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
+			width={600}
+			height={400}
+			format="webp"
+			quality={75}
+			loading="lazy"
+			decoding="async"
+			class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
 		/>
 	</div>
 
@@ -40,9 +48,28 @@ const whatsappMsg = encodeURIComponent(
 		</p>
 
 		<div class="flex items-center justify-between mt-2">
-			<span class="font-heading text-xl font-bold text-primary">
-				${precio.toLocaleString("es-CO")}
-			</span>
+			{
+				precio ? (
+					<span class="font-heading text-xl font-bold text-primary">
+						${precio.toLocaleString("es-CO")}
+					</span>
+				) : (
+					<span class="font-heading text-sm font-medium text-gray-dark/50 italic">
+						Precio a cotizar
+					</span>
+				)
+			}
+
+			<a
+				href={`https://wa.me/573208556455?text=${whatsappMsg}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-accent hover:bg-accent-hover
+			text-white text-sm font-heading font-medium px-4 py-2 rounded-lg transition-colors
+			duration-200"
+			>
+				Cotizar
+			</a>
 		</div>
 	</div>
 </article>
