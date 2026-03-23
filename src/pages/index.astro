@@ -13,6 +13,8 @@ import { getCollection } from "astro:content";
 import ProductCard from "../components/ProductCard.astro";
 
 import Steps from "../components/Steps.astro";
+import Nosotros from "../components/NosotrosPreview.astro";
+import ContactoPreview from "../components/ContactoPreview.astro";
 
 const destacados = (await getCollection("productos"))
 	.filter((p: any) => p.data.destacado)
@@ -74,10 +76,16 @@ const destacados = (await getCollection("productos"))
 
 	<!-- Sección de pasos -->
 	<Steps />
+
+	<!-- Sección de nosotros -->
+	<Nosotros />
+
+	<!-- Contacto Preview -->
+	<ContactoPreview />
+
+	<!-- Pie de página -->
+	<Footer />
+
+	<!-- Botón de WhatsApp -->
+	<WhatsappButton />
 </Layout>
-
-<!-- Botón de WhatsApp -->
-<WhatsappButton />
-
-<!-- Pie de página -->
-<Footer />

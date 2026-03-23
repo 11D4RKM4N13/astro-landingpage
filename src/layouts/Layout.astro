@@ -24,12 +24,10 @@ const {
 	lang = SITE.defaultLanguage,
 } = Astro.props;
 
-// Construct full URLs
 const currentPath = Astro.url.pathname;
 const canonicalPath = canonicalURL || currentPath;
 const siteURL = new URL(canonicalPath, SITE.url);
 
-// Handle image URLs - support both absolute URLs and relative paths
 const getFullImageUrl = (image: string): string => {
 	if (image.startsWith("http://") || image.startsWith("https://")) {
 		return image;
@@ -40,11 +38,28 @@ const getFullImageUrl = (image: string): string => {
 const fullOgImage = getFullImageUrl(ogImage);
 const fullTwitterImage = getFullImageUrl(twitterImage);
 
-// Build robots meta content
 const robotsContent = [
 	noindex ? "noindex" : "index",
 	nofollow ? "nofollow" : "follow",
 ].join(", ");
+
+// JSON-LD para negocio local
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	name: "J&A Cintas y Lanyards",
+	description: SITE.description,
+	url: SITE.url,
+	telephone: "+573208556455",
+	address: {
+		"@type": "PostalAddress",
+		addressCountry: "CO",
+	},
+	sameAs: [
+		"https://www.instagram.com/jyacintasylanyards",
+		"https://www.facebook.com/jyacintasylanyards",
+	],
+};
 ---
 
 <!doctype html>
@@ -52,10 +67,10 @@ const robotsContent = [
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.png" />
+		<link rel="icon" type="image/png" href="/favicon/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- Google Font -->
+		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -63,27 +78,23 @@ const robotsContent = [
 			rel="stylesheet"
 		/>
 
-		<!-- Resource Hints -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-
-		<!-- Preload Critical Resources -->
-		<link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
-
 		<!-- Primary Meta Tags -->
 		<title>{title}</title>
-		<meta name="title" content={title} />
 		<meta name="description" content={description} />
 		<meta name="robots" content={robotsContent} />
+		<meta name="author" content={SITE.author} />
 		<link rel="canonical" href={siteURL.href} />
 
-		<!-- Open Graph / Facebook -->
+		<!-- Open Graph -->
 		<meta property="og:type" content={ogType} />
 		<meta property="og:url" content={siteURL.href} />
 		<meta property="og:title" content={ogTitle} />
 		<meta property="og:description" content={ogDescription} />
 		<meta property="og:image" content={fullOgImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 		<meta property="og:site_name" content={SITE.title} />
+		<meta property="og:locale" content={SITE.locale} />
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content={twitterCard} />
@@ -92,12 +103,8 @@ const robotsContent = [
 		<meta name="twitter:description" content={twitterDescription} />
 		<meta name="twitter:image" content={fullTwitterImage} />
 
-		<!-- SEO básico -->
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<link rel="canonical" href={canonicalURL} />
-
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+		<!-- JSON-LD -->
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body class="min-h-screen bg-gray-50">
 		<slot />
