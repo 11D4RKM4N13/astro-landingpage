@@ -295,30 +295,34 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 		let isValid = true;
 
 		if (!nameInput.value.trim()) {
-			showFieldError(nameInput, nameError, "Name is required");
+			showFieldError(nameInput, nameError, "El nombre es requerido");
 			isValid = false;
 		}
 
 		if (!emailInput.value.trim()) {
-			showFieldError(emailInput, emailError, "Email is required");
+			showFieldError(
+				emailInput,
+				emailError,
+				"El correo electrónico es requerido"
+			);
 			isValid = false;
 		} else if (!validateEmail(emailInput.value.trim())) {
 			showFieldError(
 				emailInput,
 				emailError,
-				"Please enter a valid email address"
+				"Por favor, introduce una dirección de correo electrónico válida"
 			);
 			isValid = false;
 		}
 
 		if (!messageInput.value.trim()) {
-			showFieldError(messageInput, messageError, "Message is required");
+			showFieldError(messageInput, messageError, "El mensaje es requerido");
 			isValid = false;
 		} else if (messageInput.value.trim().length < 10) {
 			showFieldError(
 				messageInput,
 				messageError,
-				"Message must be at least 10 characters"
+				"El mensaje debe tener al menos 10 caracteres"
 			);
 			isValid = false;
 		}
