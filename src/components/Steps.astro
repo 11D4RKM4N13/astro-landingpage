@@ -1,5 +1,6 @@
 ---
 import ScrollReveal from "./ScrollReveal.tsx";
+import { SITE } from "../config/site.mjs";
 
 const pasos = [
   {
@@ -70,7 +71,7 @@ const pasos = [
   <ScrollReveal client:load delay={0.6}>
 <div class="text-center mt-16">
   <a
-    href="https://wa.me/573208556455?text=Hola%20Lanyards%20Colombia%2C%20quiero%20hacer%20un%20pedido"
+    href=`https://wa.me/${SITE.whatsAppAccount}?text=${encodeURIComponent(SITE.whatsAppMessage)}`
     target="_blank"
     rel="noopener noreferrer"
     class="bg-green hover:bg-green-hover text-white font-medium px-8 py-4 rounded-lg transition-colors duration-200 inline-block font-body"

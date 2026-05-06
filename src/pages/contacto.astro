@@ -10,7 +10,7 @@ const canales = [
 	{
 		titulo: "WhatsApp",
 		descripcion: "Respuesta en menos de 24 horas",
-		enlace: `https://wa.me/573208556455?text=${encodeURIComponent("Hola J&A, quiero más información.")}`,
+		enlace: `https://wa.me/${SITE.whatsAppAccount}?text=${encodeURIComponent(SITE.whatsAppMessage)}`,
 		etiqueta: "Escribir ahora",
 		color: "border-green text-green",
 		btnColor: "bg-green hover:bg-green-hover text-white",
@@ -19,7 +19,7 @@ const canales = [
 	{
 		titulo: "Instagram",
 		descripcion: "Síguenos y escríbenos por DM",
-		enlace: "https://instagram.com/jyacintasylanyards",
+		enlace: SITE.instagramHandle,
 		etiqueta: "Ver perfil",
 		color: "border-pink text-pink",
 		btnColor: "bg-pink hover:bg-pink-hover text-white",
@@ -28,7 +28,7 @@ const canales = [
 	{
 		titulo: "Facebook",
 		descripcion: "Encuéntranos y escríbenos",
-		enlace: "https://facebook.com/jyacintasylanyards",
+		enlace: SITE.facebookHandle,
 		etiqueta: "Ver página",
 		color: "border-blue-light text-blue-light",
 		btnColor: "bg-blue-light hover:bg-blue-light-hover text-white",
