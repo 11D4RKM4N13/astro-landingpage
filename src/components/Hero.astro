@@ -34,14 +34,7 @@ import lanyardImage from "../assets/lanyard.png";
 		<div class="flex-1">
 			<!-- Mobile: animación desde abajo -->
 			<div class="block md:hidden">
-				<ScrollReveal
-					client:load
-					direction="up"
-					duration={1.0}
-					distance={40}
-					delay={0.3}
-					eager
-				>
+				<ScrollReveal client:load delay={0.3}>
 					<Image
 						src={lanyardImage}
 						alt="Cintas y lanyards personalizados"
@@ -58,7 +51,6 @@ import lanyardImage from "../assets/lanyard.png";
 			<div class="hidden md:block overflow-hidden">
 				<ScrollReveal
 					client:load
-					direction="left"
 					duration={1.4}
 					distance={60}
 					delay={0.4}

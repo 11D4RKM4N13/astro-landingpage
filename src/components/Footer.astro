@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { SITE } from "../config/site.mjs";
 ---
 
 <footer
@@ -53,7 +54,7 @@ import { Icon } from "astro-icon/components";
 				<ul class="space-y-2">
 					<li>
 						<a
-							href="https://facebook.com/share/18WvaQXK7F/"
+							href={SITE.facebookHandle}
 							class="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors font-body"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -69,7 +70,7 @@ import { Icon } from "astro-icon/components";
 					</li>
 					<li>
 						<a
-							href="https://instagram.com/jacintasylanyards?igsh=cWl1YWVoZzRvZmo2"
+							href={SITE.instagramHandle}
 							class="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors font-body"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -85,7 +86,7 @@ import { Icon } from "astro-icon/components";
 					</li>
 					<li>
 						<a
-							href="/contact"
+							href="/contacto"
 							class="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors font-body"
 						>
 							<Icon
@@ -103,7 +104,7 @@ import { Icon } from "astro-icon/components";
 			class="pt-8 border-t border-gray-200 text-center text-primary font-display text-heading-sm"
 		>
 			<p>
-				&copy; {new Date().getFullYear()} G&CO Creativos. All rights reserved.
+				&copy; {new Date().getFullYear()} J&A Cintas y Lanyards. All rights reserved.
 			</p>
 		</div>
 	</div>

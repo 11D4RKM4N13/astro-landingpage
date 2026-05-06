@@ -1,5 +1,6 @@
 ---
 import ScrollReveal from "./ScrollReveal.tsx";
+import { SITE } from "../config/site.mjs";
 
 const whatsappMsg = encodeURIComponent(
 	"Hola J&A Cintas y Lanyards, quiero hacer un pedido personalizado."
@@ -34,7 +35,7 @@ const whatsappMsg = encodeURIComponent(
 				<!-- WhatsApp (principal) -->
 
 				<a
-					href={`https://wa.me/573208556455?text=${whatsappMsg}`}
+					href=`https://wa.me/${SITE.whatsAppAccount}?text=${encodeURIComponent(SITE.whatsAppMessage)}`
 					target="_blank"
 					rel="noopener noreferrer"
 					class="flex items-center gap-2 bg-green
