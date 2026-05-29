@@ -1,75 +1,65 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { SITE } from "../config/site.mjs";
 
 interface Props {
-	nombre: string;
-	descripcion: string;
-	precio?: number;
-	categoria: string;
-	imagen: string;
-	slug: string;
+  nombre: string;
+  descripcion?: string;
+  categoria: string;
+  imagen: ImageMetadata;
+  slug: string;
 }
 
-const { nombre, descripcion, precio, categoria, imagen, slug } = Astro.props;
-
-const whatsappMsg = encodeURIComponent(
-	`Hola, me interesa el producto: ${nombre}. ¿Me pueden dar más información?`
-);
+const { nombre, descripcion, categoria, imagen } = Astro.props;
 ---
 
-<article
-	class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col"
->
-	<div class="overflow-hidden aspect-3/2">
-		<Image
-			src={imagen}
-			alt={nombre}
-			width={600}
-			height={400}
-			format="webp"
-			quality={75}
-			loading="lazy"
-			decoding="async"
-			class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-		/>
-	</div>
+<article class="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 w-full h-70 md:h-80 group">
 
-	<div class="p-5 flex flex-col flex-1 gap-3">
-		<span
-			class="text-xs font-heading font-medium uppercase tracking-wide text-accent"
-		>
-			{categoria}
-		</span>
-		<h3 class="font-heading text-lg font-semibold text-primary">
-			{nombre}
-		</h3>
-		<p class="font-body text-sm text-gray-dark/80 flex-1">
-			{descripcion}
-		</p>
+  <!-- Contenedor de la imagen con efecto zoom out en hover -->
+  <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+    <div class="w-full h-full transition-transform duration-700 ease-out group-hover:scale-95">
+      <Image
+        src={imagen}
+        alt={nombre}
+        widths={[400, 800, 1200]}
+        sizes="100vw"
+        format="webp"
+        quality={100}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
 
-		<div class="flex items-center justify-between mt-2">
-			{
-				precio ? (
-					<span class="font-heading text-xl font-bold text-primary">
-						${precio.toLocaleString("es-CO")}
-					</span>
-				) : (
-					<span class="font-heading text-sm font-medium text-gray-dark/50 italic">
-						Precio a cotizar
-					</span>
-				)
-			}
+  <!-- Overlay oscuro para mejorar contraste del texto -->
+  <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20 z-10"></div>
 
-			<a
-				href={`https://wa.me/573208556455?text=${whatsappMsg}`}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="bg-accent hover:bg-accent-hover
-			text-white text-sm font-heading font-medium px-4 py-2 rounded-lg transition-colors
-			duration-200"
-			>
-				Cotizar
-			</a>
-		</div>
-	</div>
+  <!-- Contenido superpuesto -->
+  <div class="relative z-20 flex flex-col justify-end h-full p-5 text-white">
+    <span class="text-[11px] font-heading font-semibold uppercase tracking-wider bg-white/20 backdrop-blur-sm inline-block w-fit px-2 py-0.5 rounded-full mb-2">
+      {categoria}
+    </span>
+    <h3 class="font-heading text-xl md:text-2xl font-bold leading-tight line-clamp-2 drop-shadow-md">
+      {nombre}
+    </h3>
+    {descripcion && (
+      <p class="text-sm md:text-base text-white/90 mt-1 line-clamp-2 drop-shadow">
+        {descripcion}
+      </p>
+    )}
+    <a
+      href={`https://wa.me/${SITE.whatsAppAccount}?text=${encodeURIComponent(SITE.whatsAppMessage)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-4 self-start inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-heading font-medium px-5 py-2 rounded-full transition-colors duration-200 shadow-lg"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.136 1.535 5.874L.057 23.5l5.797-1.452A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.652-.52-5.166-1.427l-.371-.22-3.44.862.878-3.351-.242-.386A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Cotizar
+    </a>
+  </div>
 </article>

@@ -6,6 +6,7 @@ import ScrollReveal from "../components/ScrollReveal.tsx";
 import { SITE } from "../config/site.mjs";
 import { getCollection } from "astro:content";
 import ProductCard from "../components/ProductCard.astro";
+import videoProceso from "../assets/Videocortecintacampeón.mp4";
 
 const todos = await getCollection("productos");
 const categorias = [
@@ -23,32 +24,43 @@ const categorias = [
 	<main id="main-content" role="main">
 		<!-- Hero con imagen de fondo -->
 		<section
-			class="relative h-64 md:h-80 flex items-center justify-center overflow-hidden"
+			class="relative h-72 md:h-96 flex items-center justify-center overflow-hidden"
 		>
-			<img
-				src="/hero-productos.webp"
-				alt="Catálogo de productos J&A Cintas y Lanyards"
+			<!-- Reemplaza /proceso-impresion.mp4 con la ruta real de tu video en /public -->
+			<video
+				autoplay
+				muted
+				loop
+				playsinline
+				preload="metadata"
 				class="absolute inset-0 w-full h-full object-cover"
-				onerror="this.style.display='none'"
-			/>
-			<div class="absolute inset-0 bg-primary"></div>
-			<div class="relative z-10 text-center px-4">
-				<ScrollReveal client:load>
-					<span
-						class="font-heading text-accent text-sm uppercase tracking-widest font-medium"
-					>
-						Catálogo
-					</span>
-					<h1
-						class="font-heading text-4xl md:text-5xl font-bold text-white mt-2"
-					>
-						Nuestros productos
-					</h1>
-					<p class="font-body text-white/80 mt-3 max-w-xl mx-auto">
-						Fabricamos a medida para empresas, eventos y promociones en todo
-						Colombia.
-					</p>
-				</ScrollReveal>
+			>
+				<source src={videoProceso} type="video/mp4" />
+			</video>
+
+			<!-- Overlay oscuro para que el texto sea legible -->
+			<div class="absolute inset-0 bg-primary/65"></div>
+
+			<!-- Texto sobre el video -->
+			<div class="relative z-10 text-center px-4 max-w-2xl mx-auto">
+				<div class="relative z-10 text-center px-4">
+					<ScrollReveal client:load>
+						<span
+							class="font-heading text-accent text-sm uppercase tracking-widest font-medium"
+						>
+							Catálogo
+						</span>
+						<h1
+							class="font-heading text-4xl md:text-5xl font-bold text-white mt-2"
+						>
+							Nuestros productos
+						</h1>
+						<p class="font-body text-white/80 mt-3 max-w-xl mx-auto">
+							Fabricamos a medida para empresas, eventos y promociones en todo
+							Colombia.
+						</p>
+					</ScrollReveal>
+				</div>
 			</div>
 		</section>
 
@@ -83,7 +95,6 @@ const categorias = [
 							<ProductCard
 								nombre={p.data.nombre}
 								descripcion={p.data.descripcion}
-								precio={p.data.precio}
 								categoria={p.data.categoria}
 								imagen={p.data.imagen || ""}
 								slug={p.slug}
