@@ -22,10 +22,10 @@ const { nombre, descripcion, categoria, imagen } = Astro.props;
       <Image
         src={imagen}
         alt={nombre}
-        widths={[400, 800, 1200]}
-        sizes="100vw"
+        widths={[400, 800]}
+        sizes="(min-width: 768px) 33vw, 100vw"
         format="webp"
-        quality={100}
+        quality={85}
         loading="lazy"
         decoding="async"
         class="w-full h-full object-cover"

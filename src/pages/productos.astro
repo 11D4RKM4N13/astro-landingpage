@@ -6,7 +6,7 @@ import ScrollReveal from "../components/ScrollReveal.tsx";
 import { SITE } from "../config/site.mjs";
 import { getCollection } from "astro:content";
 import ProductCard from "../components/ProductCard.astro";
-import videoProceso from "../assets/Videocortecintacampeón.mp4";
+import videoProceso from "../assets/Videocortecintacampeón.webm";
 
 const todos = await getCollection("productos");
 const categorias = [
@@ -33,6 +33,7 @@ const categorias = [
 				loop
 				playsinline
 				preload="metadata"
+				poster="/hero-productos-poster.webp"
 				class="absolute inset-0 w-full h-full object-cover"
 			>
 				<source src={videoProceso} type="video/mp4" />

@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollReveal from "../components/ScrollReveal.tsx";
+import { Image } from "astro:assets";
 import { SITE } from "../config/site.mjs";
 import videoProceso from "../assets/20260508_140226.mp4";
 
@@ -67,6 +68,7 @@ const stats = [
 				loop
 				playsinline
 				preload="metadata"
+				poster="/hero-nosotros-poster.webp"
 				class="absolute inset-0 w-full h-full object-cover"
 			>
 				<source src={videoProceso} type="video/mp4" />
@@ -95,23 +97,6 @@ const stats = [
 		<!-- Historia + imagen -->
 		<section class="max-w-6xl mx-auto px-4 py-20">
 			<div class="flex flex-col md:flex-row items-center gap-16">
-				<ScrollReveal
-					client:load
-					direction="right"
-					duration={1.4}
-					distance={80}
-				>
-					<div
-						class="flex-1 w-full bg-primary/10 rounded-2xl overflow-hidden aspect-square flex items-center justify-center"
-					>
-						<img
-							src="/nosotros.webp"
-							alt="Taller J&A Cintas y Lanyards"
-							class="w-full h-full object-cover"
-							onerror="this.style.display='none'"
-						/>
-					</div>
-				</ScrollReveal>
 
 				<div class="flex-1 flex flex-col gap-6">
 					<ScrollReveal client:load direction="left">
@@ -162,36 +147,6 @@ const stats = [
 					Desde el diseño hasta la entrega, cada paso está pensado para
 					garantizar la calidad y personalización que tu marca merece.
 				</p>
-			</ScrollReveal>
-
-			<ScrollReveal client:load duration={1.4} distance={60}>
-				<div
-					class="relative w-full rounded-2xl overflow-hidden shadow-lg bg-primary/5 border border-primary/10"
-					style="aspect-ratio: 16/9;"
-				>
-					<!-- Reemplaza el src con la URL real del video -->
-					<!-- Opción A – YouTube: cambia VIDEO_ID por el ID de tu video -->
-					<iframe
-						src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&color=white"
-						title="Proceso de fabricación J&A Cintas y Lanyards"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-						loading="lazy"
-						class="absolute inset-0 w-full h-full border-0"></iframe>
-
-					<!-- Opción B – Video propio (.mp4): descomenta esto y comenta el iframe de arriba -->
-					<!--
-					<video
-						controls
-						preload="metadata"
-						poster="/proceso-poster.webp"
-						class="absolute inset-0 w-full h-full object-cover"
-					>
-						<source src="/proceso-fabricacion.mp4" type="video/mp4" />
-						Tu navegador no soporta la reproducción de video.
-					</video>
-					-->
-				</div>
 			</ScrollReveal>
 		</section>
 
@@ -300,5 +255,3 @@ const stats = [
 		</section>
 	</main>
 </Layout>
-
-<Footer />
