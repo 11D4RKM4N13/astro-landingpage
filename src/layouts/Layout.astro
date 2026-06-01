@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { SITE } from "../config/site.mjs";
 import type { SEOProps } from "../types/seo";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 interface Props extends SEOProps {
 	lang?: string;
@@ -105,6 +106,8 @@ const jsonLd = {
 
 		<!-- JSON-LD -->
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+		<GoogleAnalytics />
 	</head>
 	<body class="min-h-screen bg-gray-50">
 		<slot />
