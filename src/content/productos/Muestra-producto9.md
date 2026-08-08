@@ -1,6 +1,6 @@
 ---
 nombre: Manilla personalizada
-categoria: accesorio
+categoria: accesorios
 imagen: /imgs/Cintas-religion.jpeg
 destacado: false
 ---
