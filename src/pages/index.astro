@@ -18,7 +18,7 @@ import ContactoPreview from "../components/ContactoPreview.astro";
 
 const destacados = (await getCollection("productos"))
 	.filter((p: any) => p.data.destacado)
-	.slice(0, 3);
+	.slice(0, 10);
 ---
 
 <Layout
